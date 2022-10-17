@@ -1,8 +1,17 @@
-/* @font-face {
-  font-family: 'Example Sans';
-  src: url('../public/fonts/ExampleSans-Regular.woff2') format('woff2'),
-      url('../public/fonts/ExampleSans-Regular.woff') format('woff');
-  font-weight: 400;
+@font-face {
+  font-family: 'PPNeueMontreal';
+  src: url('../public/fonts/PPNeueMontreal-Book.woff2') format('woff2'),
+      url('../public/fonts/PPNeueMontreal-Book.woff') format('woff');
+  font-weight: 500;
   font-style: normal;
   font-display: swap;
-} */
+}
+
+@font-face {
+  font-family: 'PPNeueMontreal';
+  src: url('../public/fonts/PPNeueMontreal-Bold.woff2') format('woff2'),
+      url('../public/fonts/PPNeueMontreal-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

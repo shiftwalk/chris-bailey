@@ -5,7 +5,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'sans': ['Arial', 'sans-serif'],
+      'sans': ['PPNeueMontreal', 'Arial', 'sans-serif'],
       'mono': ['Lucida Console', 'Courier', 'monospace'],
     },
     screens: {
@@ -18,7 +18,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        'black': '#000',
+        'black': '#131313',
         'white': '#FFF',
         'example-color': {
           light: '#ffb288',

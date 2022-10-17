@@ -14,5 +14,23 @@
 
 /* Simple defaults */
 body {
-  @apply font-sans antialiased text-black bg-white;
+  @apply font-sans antialiased text-black bg-white tracking-tighter selection:bg-black selection:text-white;
+}
+
+.bg-dark {
+  @apply selection:bg-black selection:text-[#D2FC00]
+}
+
+html {
+  scroll-behavior: initial;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
