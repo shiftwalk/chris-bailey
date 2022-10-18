@@ -44,10 +44,8 @@ export default function WorksSlug() {
   }, []);
   
   return (
-  <Layout>
+    <Layout>
       <NextSeo title="Work Slug" />
-
-      <Header />
       
       <LazyMotion features={domAnimation}>
         <m.main

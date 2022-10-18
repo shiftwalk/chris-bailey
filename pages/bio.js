@@ -45,8 +45,6 @@ export default function Bio() {
   return (
     <Layout>
       <NextSeo title="Bio" />
-
-      <Header />
       
       <LazyMotion features={domAnimation}>
         <m.main
@@ -55,50 +53,56 @@ export default function Bio() {
           exit="exit"
           className=""
         >
-          <article className="px-[10px] pt-[43vw] md:pt-[15vw] xl:pt-[10vw]">
-            <div className="grid grid-cols-12">
-              <m.div variants={fade} className="col-span-12 md:col-span-4 relative bg-[#D2FC00]">
-                <LocalImage src={'/images/bio.jpg'} width={1126} height={1660} className="bg-[#D2FC00]" />
-              </m.div>
+          <article className="px-[10px]">
+            <div className="md:h-screen pt-[43vw] md:pt-[15vw] xl:pt-[10vw] mb-[33vw] md:mb-[18vw] flex-col flex overflow-hidden">
+              <div className="grid grid-cols-12 col-span-12 flex-1">
+                <m.div variants={fade} className="col-span-12 md:col-span-4 relative bg-[#D2FC00] self-end h-full overflow-hidden aspect-[9/12] md:aspect-auto">
+                  <LocalImage
+                    src={'/images/bio.jpg'}
+                    layout="fill"
+                    className="bg-[#D2FC00] absolute inset-0 w-full h-full object-center object-cover cover-image--top"
+                  />
+                </m.div>
 
-              <div className="col-span-12 md:col-span-8 flex flex-wrap">
-                <div className="w-full text-right hidden md:block">
-                  <div className="">
-                    <span className="overflow-hidden relative block md:mb-2">
-                      <m.a variants={reveal} href="mailto:hello@chrisbaileystudio.com" target="_blank" rel="noopener noreferrer" className="block font-bold text-[6.5vw] md:text-[2.6vw] leading-none md:leading-[0.8] uppercase relative group overflow-hidden">
-                        <span className="block transition-translate ease-in-out duration-[350ms] group-hover:translate-y-[-100%]">Email</span>
-                        <span className="block absolute top-0 right-0 bottom-0 transition-translate ease-in-out duration-[350ms] translate-y-full group-hover:translate-y-0">Email→</span>
-                      </m.a>
-                    </span>
-                    
-                    <span className="overflow-hidden relative block md:mb-2">
-                      <m.a variants={reveal} href="https://example.com" target="_blank" rel="noopener noreferrer" className="block font-bold text-[6.5vw] md:text-[2.6vw] leading-none md:leading-[0.8] uppercase relative group overflow-hidden">
-                        <span className="block transition-translate ease-in-out duration-[350ms] group-hover:translate-y-[-100%]">LinkedIn</span>
-                        <span className="block absolute top-0 right-0 bottom-0 transition-translate ease-in-out duration-[350ms] translate-y-full group-hover:translate-y-0">LinkedIn→</span>
-                      </m.a>
-                    </span>
+                <div className="col-span-12 md:col-span-8 flex flex-wrap">
+                  <div className="w-full text-right hidden md:block">
+                    <div className="">
+                      <span className="overflow-hidden relative block md:mb-2">
+                        <m.a variants={reveal} href="mailto:hello@chrisbaileystudio.com" target="_blank" rel="noopener noreferrer" className="block font-bold text-[6.5vw] md:text-[2.6vw] leading-none md:leading-[0.8] uppercase relative group overflow-hidden">
+                          <span className="block transition-translate ease-in-out duration-[350ms] group-hover:translate-y-[-100%]">Email</span>
+                          <span className="block absolute top-0 right-0 bottom-0 transition-translate ease-in-out duration-[350ms] translate-y-full group-hover:translate-y-0">Email→</span>
+                        </m.a>
+                      </span>
+                      
+                      <span className="overflow-hidden relative block md:mb-2">
+                        <m.a variants={reveal} href="https://example.com" target="_blank" rel="noopener noreferrer" className="block font-bold text-[6.5vw] md:text-[2.6vw] leading-none md:leading-[0.8] uppercase relative group overflow-hidden">
+                          <span className="block transition-translate ease-in-out duration-[350ms] group-hover:translate-y-[-100%]">LinkedIn</span>
+                          <span className="block absolute top-0 right-0 bottom-0 transition-translate ease-in-out duration-[350ms] translate-y-full group-hover:translate-y-0">LinkedIn→</span>
+                        </m.a>
+                      </span>
 
-                    <span className="overflow-hidden relative block md:mb-2">
-                      <m.a variants={reveal} href="https://example.com" target="_blank" rel="noopener noreferrer" className="block font-bold text-[6.5vw] md:text-[2.6vw] leading-none md:leading-[0.8] uppercase relative group overflow-hidden">
-                        <span className="block transition-translate ease-in-out duration-[350ms] group-hover:translate-y-[-100%]">Instagram</span>
-                        <span className="block absolute top-0 right-0 bottom-0 transition-translate ease-in-out duration-[350ms] translate-y-full group-hover:translate-y-0">Instagram→</span>
-                      </m.a>
-                    </span>
+                      <span className="overflow-hidden relative block md:mb-2">
+                        <m.a variants={reveal} href="https://example.com" target="_blank" rel="noopener noreferrer" className="block font-bold text-[6.5vw] md:text-[2.6vw] leading-none md:leading-[0.8] uppercase relative group overflow-hidden">
+                          <span className="block transition-translate ease-in-out duration-[350ms] group-hover:translate-y-[-100%]">Instagram</span>
+                          <span className="block absolute top-0 right-0 bottom-0 transition-translate ease-in-out duration-[350ms] translate-y-full group-hover:translate-y-0">Instagram→</span>
+                        </m.a>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="overflow-hidden relative mt-auto">
+                    <m.h1 variants={reveal} className="w-full text-[15.5vw] md:text-[11vw] font-bold uppercase leading-[1] md:leading-[0.75] mb-0 pb-0">Biography</m.h1>
                   </div>
                 </div>
-
-                <div className="overflow-hidden relative mt-auto">
-                  <m.h1 variants={reveal} className="w-full text-[15.5vw] md:text-[11vw] font-bold uppercase leading-[1] md:leading-[0.75] mb-0 pb-0">Biography</m.h1>
-                </div>
               </div>
-            </div>
-            
-            <div className="overflow-hidden relative mb-[33vw] md:mb-[18vw]">
-              <m.div variants={reveal}>
-                <Marquee gradient={false} speed={200} className="overflow-hidden">
-                  <span className="block font-bold leading-[0.8] text-[30vw] md:text-[15vw] md:leading-[0.9] uppercase">Art Director ● Art Director ● Art Director ● </span>
-                </Marquee>
-              </m.div>
+
+              <div className="overflow-hidden relative col-span-12 self-end">
+                <m.div variants={reveal}>
+                  <Marquee gradient={false} speed={200} className="overflow-hidden">
+                    <span className="block font-bold leading-[0.8] text-[30vw] md:text-[15vw] md:leading-[0.8] uppercase">Art Director ● Art Director ● Art Director ● </span>
+                  </Marquee>
+                </m.div>
+              </div>
             </div>
 
             <m.div variants={fade} className="pb-[33vw] md:pb-[18vw] grid grid-cols-12">

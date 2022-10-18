@@ -34,3 +34,15 @@ body {
 body::-webkit-scrollbar {
   display: none;
 }
+
+.cover-image {
+  img {
+    @apply object-cover object-center;
+  }
+}
+
+.cover-image--top {
+  img {
+    @apply object-cover object-top;
+  }
+}

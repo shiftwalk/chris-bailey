@@ -44,8 +44,6 @@ export default function Works() {
   return (
     <Layout>
       <NextSeo title="Works" />
-
-      <Header />
       
       <LazyMotion features={domAnimation}>
         <m.main

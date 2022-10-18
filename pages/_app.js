@@ -6,6 +6,7 @@ import SEO from '@/helpers/seo.config';
 import { IntroContext } from '@/context/intro'
 import { useState } from 'react';
 import Marquee from 'react-fast-marquee';
+import Header from '@/components/header';
 
 export default function App({ Component, pageProps }) {
   const router = useRouter()
@@ -103,6 +104,7 @@ export default function App({ Component, pageProps }) {
 
 
         <div className={`transition-colors ease-in-out duration-[550ms] ${router.asPath == '/works' || router.asPath == '/bio' ? 'bg-dark bg-[#D2FC00]' : 'bg-white'}`}>
+          <Header/>
           <AnimatePresence exitBeforeEnter>
             <Component {...pageProps} key={router.asPath} />
           </AnimatePresence>
