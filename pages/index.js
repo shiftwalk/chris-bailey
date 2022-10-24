@@ -13,8 +13,60 @@ import { IntroContext } from 'context/intro'
 import Lenis from '@studio-freight/lenis';
 import ReactCursorPosition from 'react-cursor-position';
 import AccordionItem from '@/components/accordion-item';
+import SanityPageService from '@/services/sanityPageService'
+import Gif from '@/components/gif';
 
-export default function Home() {
+const query = `{
+  "home": *[_type == "home"][0]{
+    title,
+    aboutText,
+    heroImages[] {
+      asset-> {
+        ...
+      },
+      caption,
+      alt,
+      hotspot {
+        x,
+        y
+      },
+    },
+    seo {
+      ...,
+      shareGraphic {
+        asset->
+      }
+    }
+  },
+  "work": *[_type == "work"] | order(orderRank asc){
+    title,
+    teaserImage {
+      asset-> {
+        ...
+      },
+      caption,
+      alt,
+      hotspot {
+        x,
+        y
+      },
+    },
+    slug {
+      current
+    }
+  },
+  "contact": *[_type == "contact"][0]{
+    emailAddress,
+    instagram,
+    linkedIn,
+    bookingAvailabilityOverride,
+  }
+}`
+
+const pageService = new SanityPageService(query)
+
+export default function Home(initialData) {
+  const { data: { home, work, contact } } = pageService.getPreviewHook(initialData)()
   const [introContext, setIntroContext] = useContext(IntroContext);
 
   useEffect(() => {
@@ -50,7 +102,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <NextSeo title="Home" />
+      <NextSeo title={home.title} />
       
       <LazyMotion features={domAnimation}>
         <m.main
@@ -61,7 +113,9 @@ export default function Home() {
         >
           <article className="px-[10px] pt-[43vw] md:pt-[15vw] xl:pt-[10vw]">
             <m.div variants={fade}>
-              <LocalImage src={'/images/hero.jpg'} width={2200} height={1430} />
+              <Gif 
+                images={home.heroImages}
+              />
             </m.div>
 
             <div className="overflow-hidden relative mb-[33vw] md:mb-[18vw]">
@@ -83,87 +137,42 @@ export default function Home() {
               <div className="col-span-12 md:col-span-9 md:col-start-4">
                 <span className="block uppercase mb-[10px] text-sm">All Works</span>
                 <ul className="border-b border-black">
-                  <li>
-                    <ReactCursorPosition>
-                      <AccordionItem 
-                        href="/works-slug"
-                        image="/images/works-teaser.jpg"
-                        i={1}
-                        heading="In Conversations With"
-                        isOpen
-                      />
-                    </ReactCursorPosition>
-                  </li>
-
-                  <li>
-                    <ReactCursorPosition>
-                      <AccordionItem 
-                        href="/works-slug"
-                        image="/images/works-teaser.jpg"
-                        i={2}
-                        heading="Sindaya Jewellery"
-                      />
-                    </ReactCursorPosition>
-                  </li>
-
-                  <li>
-                    <ReactCursorPosition>
-                      <AccordionItem 
-                        href="/works-slug"
-                        image="/images/works-teaser.jpg"
-                        i={3}
-                        heading="Soteriors"
-                      />
-                    </ReactCursorPosition>
-                  </li>
-
-                  <li>
-                    <ReactCursorPosition>
-                      <AccordionItem 
-                        href="/works-slug"
-                        image="/images/works-teaser.jpg"
-                        i={4}
-                        heading="Simply Plan"
-                      />
-                    </ReactCursorPosition>
-                  </li>
-
-                  <li>
-                    <ReactCursorPosition>
-                      <AccordionItem 
-                        href="/works-slug"
-                        image="/images/works-teaser.jpg"
-                        i={5}
-                        heading="STX.Swiss"
-                      />
-                    </ReactCursorPosition>
-                  </li>
-
-                  <li>
-                    <ReactCursorPosition>
-                      <AccordionItem 
-                        href="/works-slug"
-                        image="/images/works-teaser.jpg"
-                        i={6}
-                        heading="Crypto Valley Festival"
-                      />
-                    </ReactCursorPosition>
-                  </li>
+                  {work.map((e, i) => {
+                    return (
+                      <li key={i}>
+                        <ReactCursorPosition>
+                          <AccordionItem 
+                            href={`works/${e.slug.current}`}
+                            image={e.teaserImage}
+                            i={i + 1}
+                            heading={e.title}
+                            isOpen
+                          />
+                        </ReactCursorPosition>
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
             </m.div>
 
             <m.div variants={fade} className="md:px-[10vw] mb-[33vw] md:mb-[18vw]">
               <span className="block uppercase mb-5 text-sm">About</span>
-              <p className="uppercase text-[5.3vw] md:text-[3.5vw] leading-[1]">Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Nulla vitae elit libero, a pharetra augue Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+              <p className="uppercase text-[5.3vw] md:text-[3.5vw] leading-[1]">{home.aboutText}</p>
             </m.div>
           </article>
         </m.main>
         
         <m.div variants={fade}>
-          <Footer />
+          <Footer contact={contact} />
         </m.div>
       </LazyMotion>
     </Layout>
   )
+}
+
+export async function getStaticProps(context) {
+  const cms = await pageService.fetchQuery(context)
+
+  return cms
 }

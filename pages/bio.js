@@ -9,8 +9,45 @@ import LocalImage from '@/components/local-image';
 import { useContext, useEffect, useLayoutEffect } from 'react'
 import { IntroContext } from 'context/intro'
 import Lenis from '@studio-freight/lenis';
+import SanityPageService from '@/services/sanityPageService'
+import SanityBlockContent from '@sanity/block-content-to-react';
+import SanityImage from '@/components/sanity-image';
 
-export default function Bio() {
+const query = `{
+  "bio": *[_type == "bio"][0]{
+    title,
+    aboutText,
+    aboutServices[],
+    heroImage {
+      asset-> {
+        ...
+      },
+      caption,
+      alt,
+      hotspot {
+        x,
+        y
+      },
+    },
+    seo {
+      ...,
+      shareGraphic {
+        asset->
+      }
+    }
+  },
+  "contact": *[_type == "contact"][0]{
+    emailAddress,
+    instagram,
+    linkedIn,
+    bookingAvailabilityOverride,
+  }
+}`
+
+const pageService = new SanityPageService(query)
+
+export default function Bio(initialData) {
+  const { data: { bio, contact } } = pageService.getPreviewHook(initialData)()
   const [introContext, setIntroContext] = useContext(IntroContext);
 
   useEffect(() => {
@@ -57,8 +94,8 @@ export default function Bio() {
             <div className="md:h-screen pt-[43vw] md:pt-[15vw] xl:pt-[10vw] mb-[33vw] md:mb-[18vw] flex-col flex overflow-hidden">
               <div className="grid grid-cols-12 col-span-12 flex-1">
                 <m.div variants={fade} className="col-span-12 md:col-span-4 relative bg-[#D2FC00] self-end h-full overflow-hidden aspect-[9/12] md:aspect-auto">
-                  <LocalImage
-                    src={'/images/bio.jpg'}
+                  <SanityImage
+                    image={bio.heroImage}
                     layout="fill"
                     className="bg-[#D2FC00] absolute inset-0 w-full h-full object-center object-cover cover-image--top"
                   />
@@ -68,21 +105,21 @@ export default function Bio() {
                   <div className="w-full text-right hidden md:block">
                     <div className="">
                       <span className="overflow-hidden relative block md:mb-2">
-                        <m.a variants={reveal} href="mailto:hello@chrisbaileystudio.com" target="_blank" rel="noopener noreferrer" className="block font-bold text-[6.5vw] md:text-[2.6vw] leading-none md:leading-[0.8] uppercase relative group overflow-hidden">
+                        <m.a variants={reveal} href={`mailto:${contact.emailAddress}`} target="_blank" rel="noopener noreferrer" className="block font-bold text-[6.5vw] md:text-[2.6vw] leading-none md:leading-[0.8] uppercase relative group overflow-hidden">
                           <span className="block transition-translate ease-in-out duration-[350ms] group-hover:translate-y-[-100%]">Email</span>
                           <span className="block absolute top-0 right-0 bottom-0 transition-translate ease-in-out duration-[350ms] translate-y-full group-hover:translate-y-0">Email→</span>
                         </m.a>
                       </span>
                       
                       <span className="overflow-hidden relative block md:mb-2">
-                        <m.a variants={reveal} href="https://example.com" target="_blank" rel="noopener noreferrer" className="block font-bold text-[6.5vw] md:text-[2.6vw] leading-none md:leading-[0.8] uppercase relative group overflow-hidden">
+                        <m.a variants={reveal} href={contact.linkedIn} target="_blank" rel="noopener noreferrer" className="block font-bold text-[6.5vw] md:text-[2.6vw] leading-none md:leading-[0.8] uppercase relative group overflow-hidden">
                           <span className="block transition-translate ease-in-out duration-[350ms] group-hover:translate-y-[-100%]">LinkedIn</span>
                           <span className="block absolute top-0 right-0 bottom-0 transition-translate ease-in-out duration-[350ms] translate-y-full group-hover:translate-y-0">LinkedIn→</span>
                         </m.a>
                       </span>
 
                       <span className="overflow-hidden relative block md:mb-2">
-                        <m.a variants={reveal} href="https://example.com" target="_blank" rel="noopener noreferrer" className="block font-bold text-[6.5vw] md:text-[2.6vw] leading-none md:leading-[0.8] uppercase relative group overflow-hidden">
+                        <m.a variants={reveal} href={contact.instagram} target="_blank" rel="noopener noreferrer" className="block font-bold text-[6.5vw] md:text-[2.6vw] leading-none md:leading-[0.8] uppercase relative group overflow-hidden">
                           <span className="block transition-translate ease-in-out duration-[350ms] group-hover:translate-y-[-100%]">Instagram</span>
                           <span className="block absolute top-0 right-0 bottom-0 transition-translate ease-in-out duration-[350ms] translate-y-full group-hover:translate-y-0">Instagram→</span>
                         </m.a>
@@ -113,16 +150,16 @@ export default function Bio() {
                     <span className="block uppercase text-sm leading-snug">—</span>
                   </div>
                   <div className="w-full md:w-auto md:pr-[10vw] mb-10 md:mb-0">
-                    <span className="block uppercase text-sm leading-snug">Art Direction</span>
-                    <span className="block uppercase text-sm leading-snug">Visual Identity</span>
-                    <span className="block uppercase text-sm leading-snug">Brand Guidelines</span>
-                    <span className="block uppercase text-sm leading-snug">Logo Design</span>
-                    <span className="block uppercase text-sm leading-snug">Interaction</span>
+                    {bio.aboutServices.map((e, i) => {
+                      return (
+                      <span className="block uppercase text-sm leading-snug" key={i}>{e}</span>
+                      )
+                    })}
                   </div>
                   <div className="w-full md:flex-1">
-                    <p className="font-bold uppercase text-[4.3vw] md:text-[2.2vw] leading-[1] mb-[3vw]">Donec sed odio dui. Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    
-                    <p className="font-bold uppercase text-[4.3vw] md:text-[2.2vw] leading-[1]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
+                    <div className="content content--vw font-bold uppercase text-[4.3vw] md:text-[2.2vw] leading-[1] mb-[3vw]">
+                      <SanityBlockContent serializers={{ container: ({ children }) => children }} blocks={bio.aboutText} />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -131,9 +168,15 @@ export default function Bio() {
         </m.main>
         
         <m.div variants={fade} className="">
-          <Footer />
+          <Footer contact={contact} />
         </m.div>
       </LazyMotion>
     </Layout>
   )
+}
+
+export async function getStaticProps(context) {
+  const cms = await pageService.fetchQuery(context)
+
+  return cms
 }

@@ -1,12 +1,12 @@
 export default {
-  defaultTitle: 'Boilerplate | Next x Tailwind x Motion',
-  description: 'A simple Next.js starter kit with Tailwind and Framer Motion.',
-  titleTemplate: '%s | Next x Tailwind x Motion',
+  defaultTitle: 'Boilerplate | Chris Bailey Studio',
+  description: 'Designer and Art Director based in the UK (GMT) Working Worldwide',
+  titleTemplate: '%s | Chris Bailey Studio',
   openGraph: {
     type: 'website',
     locale: 'en_GB',
-    url: 'https://sg-next-tailwind-motion.vercel.app/',
-    site_name: 'Next x Tailwind x Motion',
+    url: 'https://chris-bailey.vercel.app/',
+    site_name: 'Chris Bailey Studio',
   },
   twitter: {
     handle: '@samuelgoddard',
