@@ -18,7 +18,7 @@ body {
 }
 
 .bg-dark {
-  @apply selection:bg-black selection:text-[#D2FC00]
+  @apply selection:bg-black selection:text-[#C6B9A7]
 }
 
 html {
@@ -45,4 +45,8 @@ body::-webkit-scrollbar {
   img {
     @apply object-cover object-top;
   }
+}
+
+.font-normal {
+  @apply tracking-normal;
 }

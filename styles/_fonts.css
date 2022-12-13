@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'PPNeueMontreal';
-  src: url('../public/fonts/PPNeueMontreal-Book.woff2') format('woff2'),
-      url('../public/fonts/PPNeueMontreal-Book.woff') format('woff');
-  font-weight: 500;
+  src: url('../public/fonts/PPNeueMontreal-Medium.woff2') format('woff2'),
+      url('../public/fonts/PPNeueMontreal-Medium.woff') format('woff');
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }

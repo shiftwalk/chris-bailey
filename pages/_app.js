@@ -41,6 +41,14 @@ export default function App({ Component, pageProps }) {
     show: { opacity: '100%' }
   }
 
+  let bodyColor = 'bg-white'
+
+  if (router.asPath == '/') {
+    bodyColor = 'bg-[#C6B9A7] selection:bg-black selection:text-[#C6B9A7]'
+  } else if (router.asPath == '/bio') {
+    bodyColor = 'bg-[#E6C196] selection:bg-black selection:text-[#E6C196]'
+  }
+
   return (
     <>
       <DefaultSeo {...SEO} /> 
@@ -105,7 +113,7 @@ export default function App({ Component, pageProps }) {
         </LazyMotion>
 
 
-        <div className={`transition-colors ease-in-out duration-[550ms] ${router.asPath == '/works' || router.asPath == '/bio' ? 'bg-dark bg-[#D2FC00]' : 'bg-white'}`}>
+        <div className={`transition-colors ease-in-out duration-[550ms] ${bodyColor}`}>
           <Header/>
           <AnimatePresence exitBeforeEnter>
             <Component {...pageProps} key={router.asPath} />

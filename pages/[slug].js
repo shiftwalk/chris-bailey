@@ -1,12 +1,10 @@
 import Layout from '@/components/layout'
 import Footer from '@/components/footer'
-import { fade } from '@/helpers/transitions'
+import { fade, reveal } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
-import LocalImage from '@/components/local-image';
 import { useContext, useEffect, useLayoutEffect } from 'react'
 import { IntroContext } from 'context/intro'
-import Lenis from '@studio-freight/lenis';
 import SanityPageService from '@/services/sanityPageService'
 import SanityBlockContent from '@sanity/block-content-to-react'
 import BodyRenderer from '@/components/body-renderer'
@@ -20,7 +18,7 @@ const query = `{
     orderRank,
     introHeading,
     introText,
-    services,
+    services[],
     teaserImage {
       asset-> {
         ...
@@ -106,31 +104,6 @@ export default function WorksSlug(initialData) {
   useEffect(() => {
     setIntroContext(true)
   },[]);
-
-  useLayoutEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-
-    const lenis = new Lenis({
-      smooth: true,
-      easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)), // https://easings.net/en#easeOutExpo
-    });
-
-    window.lenis = lenis;
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-    
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
   
   return (
     <Layout>
@@ -143,44 +116,33 @@ export default function WorksSlug(initialData) {
           exit="exit"
           className=""
         >
-          <m.article variants={fade} className="px-[10px] pt-[43vw] md:pt-[30vw] xl:pt-[20vw]">
-            <div className="flex flex-wrap mb-6 md:mb-0">
-              <div className="w-full order-2 md:order-1 md:mb-6">
-                <div className="grid grid-cols-12">
-                  <div className="col-span-12 md:col-span-10 lg:col-span-7 xl:col-span-8 mb-6 lg:mb-0">
-                    <h1 className="uppercase text-[8.5vw] md:text-[5vw] lg:text-[3.55vw] leading-[1] md:leading-[1] lg:leading-[1] font-bold pb-0 mb-[33vw] md:mb-0">{article.introHeading}</h1>
-                  </div>
+          <m.article variants={fade} className="px-[10px] pt-[135px]">
 
-                  <div className="col-span-12 md:col-span-10 lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 tracking-tight leading-snug text-sm lg:pl-12 max-w-[450px] lg:ml-auto">
-                    <div className="content mb-8">
-                      <SanityBlockContent serializers={{ container: ({ children }) => children }} blocks={article.introText} />
-                    </div>
+            <m.h1 variants={fade} className="w-full mt-auto relative border-t border-black pt-[10px] mb-[55vw] lg:mb-[25vw]">
+              <m.div variants={reveal} className="w-[85%] lg:w-full">
+                <span className="block font-bold leading-[1] text-[7vw] md:text-[4.5vw] lg:text-[3.8vw] md:leading-[1] lg:leading-[1]">{article.title}</span>
+              </m.div>
+              <m.div variants={reveal} className="w-[85%] lg:w-full">
+                <span className="block font-normal leading-[1] text-[7vw] md:text-[4.5vw] lg:text-[3.8vw] md:leading-[1] lg:leading-[1]">
+                  {article.services.slice(0,3).map((e, i) => {
+                    return (
+                      <span className="inline" key={i}>{e}{i !== 2 ? ', ' : ''}</span>
+                    )
+                  })}
+                </span>
+              </m.div>
+            </m.h1>
 
-                    {article.services && (
-                      <div className="flex flex-wrap">
-                        <div className="w-full lg:w-auto md:pr-24 mb-3 lg:mb-0">
-                          <span className="block uppercase text-sm leading-snug">All Services</span>
-                          <span className="block uppercase text-sm leading-snug">—</span>
-                        </div>
-                        <div className="w-full lg:w-auto max-w-[180px]">
-                          <span className="block text-sm leading-snug">{article.services}</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              <div className="w-full order-1 md:order-2 mb-[10px]">
-                <div className="relative overflow-hidden aspect-[10/14] md:aspect-[16/10]">
-                  <SanityImage
-                    image={article.teaserImage}
-                    layout="fill"
-                    sizes="(min-width: 768px) 90vw, 90vw"
-                  />
-                </div>
+            <div className="w-full order-1 md:order-2 mb-[10px]">
+              <div className="relative overflow-hidden aspect-[10/14] md:aspect-[16/10]">
+                <SanityImage
+                  image={article.teaserImage}
+                  layout="fill"
+                  sizes="(min-width: 768px) 90vw, 90vw"
+                />
               </div>
             </div>
+
             <div className="mb-[33vw] md:mb-[15vw]">
               <BodyRenderer body={article.imageBlocks} />
               
