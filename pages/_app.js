@@ -62,49 +62,30 @@ export default function App({ Component, pageProps }) {
               initial="visible"
               animate="hidden"
               variants={introFullEnd}
-              transition={{ delay: 4.2, duration: 0, ease: [0.83, 0, 0.17, 1] }}
+              transition={{ delay: 2.2, duration: 0, ease: [0.83, 0, 0.17, 1] }}
               cl1assName="fixed inset-0 z-[1000] flex flex-wrap items-end h-screen min-h-screen max-h-screen p-[10px] cursor-wait"
             >
               <m.div 
                 initial="visible"
                 animate="hidden"
                 variants={introEnd}
-                transition={{ delay: 3.6, duration: 0.6, ease: [0.83, 0, 0.17, 1] }}
-                className="bg-[#D2FC00] fixed inset-0 z-[1000] flex flex-wrap items-end h-screen min-h-screen max-h-screen p-[10px] cursor-wait"
+                transition={{ delay: 1, duration: 1.2, ease: [0.83, 0, 0.17, 1] }}
+                className="bg-[#98928B] fixed inset-0 z-[1000] flex flex-wrap items-end h-screen min-h-screen max-h-screen p-[10px] cursor-wait"
               >
-                <m.div
-                  variants={container}
-                  initial="hidden"
-                  animate="show"
-                >
-                  <m.svg variants={item} transition={{ duration: 0.3 }} className="w-[33vw] absolute bottom-0 left-0 translate-x-[20vw] translate-y-[12vw]" viewBox="0 0 590 590" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M123.944 295.987c4.372 94.414 84.454 167.408 178.868 163.036 94.414-4.372 167.407-84.454 163.036-178.868l11.83-.547c4.675 100.947-73.371 186.571-174.318 191.245-100.948 4.675-186.572-73.37-191.246-174.318l11.83-.548Z" fill="#131313"/><ellipse cx="227.839" cy="196.921" rx="26.647" ry="72.244" transform="rotate(-2.651 227.839 196.921)" fill="#131313"/><ellipse cx="361.525" cy="190.731" rx="26.647" ry="72.244" transform="rotate(-2.651 361.525 190.731)" fill="#131313"/><path fill-rule="evenodd" clip-rule="evenodd" d="M307.095 564.342c148.972-6.898 264.145-133.255 257.247-282.227C557.444 133.144 431.087 17.97 282.115 24.868 133.144 31.766 17.97 158.124 24.868 307.095c6.898 148.972 133.256 264.145 282.227 257.247Zm.548 11.831c155.505-7.201 275.73-139.1 268.53-294.606-7.201-155.505-139.1-275.73-294.606-268.53-155.505 7.201-275.73 139.1-268.53 294.606 7.201 155.505 139.1 275.73 294.606 268.53Z" fill="#131313"/></m.svg>
-
-                  <m.svg variants={item} transition={{ duration: 0.3 }} className="w-[20vw] absolute bottom-0 left-0 translate-x-[55vw] translate-y-[-33vw] rotate-[-30deg]" viewBox="0 0 590 590" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M123.944 295.987c4.372 94.414 84.454 167.408 178.868 163.036 94.414-4.372 167.407-84.454 163.036-178.868l11.83-.547c4.675 100.947-73.371 186.571-174.318 191.245-100.948 4.675-186.572-73.37-191.246-174.318l11.83-.548Z" fill="#131313"/><ellipse cx="227.839" cy="196.921" rx="26.647" ry="72.244" transform="rotate(-2.651 227.839 196.921)" fill="#131313"/><ellipse cx="361.525" cy="190.731" rx="26.647" ry="72.244" transform="rotate(-2.651 361.525 190.731)" fill="#131313"/><path fill-rule="evenodd" clip-rule="evenodd" d="M307.095 564.342c148.972-6.898 264.145-133.255 257.247-282.227C557.444 133.144 431.087 17.97 282.115 24.868 133.144 31.766 17.97 158.124 24.868 307.095c6.898 148.972 133.256 264.145 282.227 257.247Zm.548 11.831c155.505-7.201 275.73-139.1 268.53-294.606-7.201-155.505-139.1-275.73-294.606-268.53-155.505 7.201-275.73 139.1-268.53 294.606 7.201 155.505 139.1 275.73 294.606 268.53Z" fill="#131313"/></m.svg>
-
-                  <m.svg variants={item} transition={{ duration: 0.3 }} className="w-[13vw] absolute top-0 left-0 translate-x-[10vw] translate-y-[5vw] rotate-[10deg]" viewBox="0 0 590 590" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M123.944 295.987c4.372 94.414 84.454 167.408 178.868 163.036 94.414-4.372 167.407-84.454 163.036-178.868l11.83-.547c4.675 100.947-73.371 186.571-174.318 191.245-100.948 4.675-186.572-73.37-191.246-174.318l11.83-.548Z" fill="#131313"/><ellipse cx="227.839" cy="196.921" rx="26.647" ry="72.244" transform="rotate(-2.651 227.839 196.921)" fill="#131313"/><ellipse cx="361.525" cy="190.731" rx="26.647" ry="72.244" transform="rotate(-2.651 361.525 190.731)" fill="#131313"/><path fill-rule="evenodd" clip-rule="evenodd" d="M307.095 564.342c148.972-6.898 264.145-133.255 257.247-282.227C557.444 133.144 431.087 17.97 282.115 24.868 133.144 31.766 17.97 158.124 24.868 307.095c6.898 148.972 133.256 264.145 282.227 257.247Zm.548 11.831c155.505-7.201 275.73-139.1 268.53-294.606-7.201-155.505-139.1-275.73-294.606-268.53-155.505 7.201-275.73 139.1-268.53 294.606 7.201 155.505 139.1 275.73 294.606 268.53Z" fill="#131313"/></m.svg>
-
-                  <m.svg variants={item} transition={{ duration: 0.3 }} className="w-[11vw] absolute top-0 right-0 translate-x-[-5vw] translate-y-[-2vw] rotate-180" viewBox="0 0 590 590" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M123.944 295.987c4.372 94.414 84.454 167.408 178.868 163.036 94.414-4.372 167.407-84.454 163.036-178.868l11.83-.547c4.675 100.947-73.371 186.571-174.318 191.245-100.948 4.675-186.572-73.37-191.246-174.318l11.83-.548Z" fill="#131313"/><ellipse cx="227.839" cy="196.921" rx="26.647" ry="72.244" transform="rotate(-2.651 227.839 196.921)" fill="#131313"/><ellipse cx="361.525" cy="190.731" rx="26.647" ry="72.244" transform="rotate(-2.651 361.525 190.731)" fill="#131313"/><path fill-rule="evenodd" clip-rule="evenodd" d="M307.095 564.342c148.972-6.898 264.145-133.255 257.247-282.227C557.444 133.144 431.087 17.97 282.115 24.868 133.144 31.766 17.97 158.124 24.868 307.095c6.898 148.972 133.256 264.145 282.227 257.247Zm.548 11.831c155.505-7.201 275.73-139.1 268.53-294.606-7.201-155.505-139.1-275.73-294.606-268.53-155.505 7.201-275.73 139.1-268.53 294.606 7.201 155.505 139.1 275.73 294.606 268.53Z" fill="#131313"/></m.svg>
-                </m.div>
-
-
                 <div className="w-full mt-auto overflow-hidden relative">
                   <m.div
                     initial="visible"
                     animate="hidden"
                     variants={introMarquee}
-                    transition={{ delay: 0.1, duration: 0.66, ease: [0.83, 0, 0.17, 1] }}
+                    transition={{ delay: 0.1, duration: 0.55, ease: [0.83, 0, 0.17, 1] }}
                     className="w-full"
                   >
-                    <div className="block md:hidden">
-                      <Marquee gradient={false} speed={350} className="overflow-hidden">
-                        <span className="block font-bold leading-[0.85] text-[30vw] md:text-[15vw] md:leading-[0.85] uppercase">Art Director ● Designer ● Art Director ● Designer ● </span>
-                      </Marquee>
-                    </div>
-                    <div className="hidden md:block">
-                      <Marquee gradient={false} speed={550} className="overflow-hidden">
-                        <span className="block font-bold leading-[0.85] text-[30vw] md:text-[15vw] md:leading-[0.85] uppercase">Art Director ● Designer ● Art Director ● Designer ● </span>
-                      </Marquee>
-                    </div>
+                    <svg className="w-full" viewBox="0 0 1710 478" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M306.275 180.45H423.926C413.056 74.2276 346.558 0 221.874 0C77.3681 0 0 100.463 0 240.6C0 376.897 73.5316 478 218.677 478C344.64 478 413.695 401.213 423.926 296.27H306.275C298.602 347.462 278.141 383.936 216.758 383.936C140.669 383.936 117.651 325.066 117.651 238.68C117.651 152.934 140.669 94.0642 216.758 94.0642C277.502 94.0642 297.963 130.538 306.275 180.45Z" fill="#131313" fill-opacity="0.8"/>
+                      <path d="M443.038 467.762H558.131V302.029H664.912C760.183 302.029 819.648 252.118 819.648 156.134C819.648 60.1499 760.183 10.2383 664.912 10.2383H443.038V467.762ZM558.131 207.965V104.303H638.057C677.7 104.303 701.997 117.74 701.997 156.134C701.997 194.527 677.7 207.965 638.057 207.965H558.131Z" fill="#131313" fill-opacity="0.8"/>
+                      <path d="M837.546 467.762H1065.81C1160.45 467.762 1222.47 430.008 1222.47 332.744C1222.47 264.276 1181.55 232.281 1133.59 223.963V222.683C1171.32 209.885 1204.56 181.73 1204.56 125.419C1204.56 47.3521 1154.69 10.2383 1059.42 10.2383H837.546V467.762ZM952.639 195.167V104.303H1029.37C1061.34 104.303 1086.91 111.981 1086.91 149.735C1086.91 187.489 1061.34 195.167 1029.37 195.167H952.639ZM952.639 373.697V265.556H1032.56C1080.52 265.556 1104.82 276.434 1104.82 319.307C1104.82 362.179 1080.52 373.697 1032.56 373.697H952.639Z" fill="#131313" fill-opacity="0.8"/>
+                      <path d="M1472.78 476.08C1616.01 476.08 1710 382.656 1710 239.32C1710 95.344 1616.01 1.91965 1472.78 1.91965C1328.27 1.91965 1233.64 95.344 1233.64 239.32C1233.64 382.656 1328.27 476.08 1472.78 476.08ZM1472.78 442.166C1351.93 442.166 1272.65 362.179 1272.65 239.32C1272.65 115.821 1351.93 35.834 1472.78 35.834C1591.71 35.834 1671 115.821 1671 239.32C1671 362.179 1591.71 442.166 1472.78 442.166ZM1477.26 383.936C1546.95 383.936 1590.43 339.783 1594.91 280.913H1557.82C1553.98 307.789 1534.16 347.462 1474.7 347.462C1407.56 347.462 1382.62 297.55 1382.62 239.32C1382.62 181.09 1407.56 130.538 1474.7 130.538C1532.25 130.538 1552.71 170.212 1556.54 192.608H1593.63C1586.59 138.217 1543.75 94.0642 1473.42 94.0642C1391.58 94.0642 1342.98 154.854 1342.98 239.32C1342.98 324.426 1392.85 383.936 1477.26 383.936Z" fill="#131313" fill-opacity="0.8"/>
+                      </svg>
                   </m.div>
                 </div>
               </m.div>
@@ -114,7 +95,7 @@ export default function App({ Component, pageProps }) {
 
 
         <div className={`transition-colors ease-in-out duration-[550ms] ${bodyColor}`}>
-          <Header/>
+          <Header path={router.asPath} />
           <AnimatePresence exitBeforeEnter>
             <Component {...pageProps} key={router.asPath} />
           </AnimatePresence>

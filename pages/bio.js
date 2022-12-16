@@ -1,7 +1,6 @@
 import Layout from '@/components/layout'
 import Footer from '@/components/footer'
-import Marquee from "react-fast-marquee";
-import { fade, reveal } from '@/helpers/transitions'
+import { fade, reveal, scale } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
@@ -9,6 +8,7 @@ import { IntroContext } from 'context/intro'
 import SanityPageService from '@/services/sanityPageService'
 import SanityBlockContent from '@sanity/block-content-to-react';
 import SanityImage from '@/components/sanity-image';
+import Link from 'next/link'
 
 const query = `{
   "bio": *[_type == "bio"][0]{
@@ -16,6 +16,17 @@ const query = `{
     aboutText,
     aboutServices[],
     heroImage {
+      asset-> {
+        ...
+      },
+      caption,
+      alt,
+      hotspot {
+        x,
+        y
+      },
+    },
+    heroImageMobile {
       asset-> {
         ...
       },
@@ -66,12 +77,16 @@ export default function Bio(initialData) {
             <div className="flex flex-wrap border-t border-black pt-[10px] mb-[35vw] md:mb-[30px]">
               <div className="w-full md:w-[45%] lg:w-[60%]">
                 <m.h1 variants={fade} className="w-full mt-auto relative">
-                  <m.div variants={reveal} className="w-[85%] lg:w-full">
-                    <span className="block font-bold leading-[1] text-[7vw] md:text-[4.5vw] lg:text-[3.8vw] md:leading-[1] lg:leading-[1]">Christopher Bailey</span>
-                  </m.div>
-                  <m.div variants={reveal} className="w-[85%] lg:w-full">
-                    <span className="block font-normal leading-[1] text-[7vw] md:text-[4.5vw] lg:text-[3.8vw] md:leading-[1] lg:leading-[1]">Designer, Art Director</span>
-                  </m.div>
+                  <div className="relative overflow-hidden">
+                    <m.div variants={reveal} className="w-[85%] lg:w-full">
+                      <span className="block font-bold leading-[1.075] text-[7vw] md:text-[4.5vw] lg:text-[3.8vw] md:leading-[1.075] lg:leading-[1.075]">Christopher Bailey</span>
+                    </m.div>
+                  </div>
+                  <div className="relative overflow-hidden">
+                    <m.div variants={reveal} className="w-[85%] lg:w-full">
+                      <span className="block font-normal leading-[1.075] text-[7vw] md:text-[4.5vw] lg:text-[3.8vw] md:leading-[1.075] lg:leading-[1.075]">Designer, Art Director</span>
+                    </m.div>
+                  </div>
                 </m.h1>
               </div>
 
@@ -85,10 +100,18 @@ export default function Bio(initialData) {
             </div>
 
             <m.div variants={fade} className="w-full relative mb-[10px] md:mb-[20px]">
-              <SanityImage
-                image={bio.heroImage}
-                className="w-full bg-[#E6C196]"
-              />
+              <div className="relative overflow-hidden bg-black">
+                <m.div variants={scale} className="bg-black">
+                  <SanityImage
+                    image={bio.heroImage}
+                    className="w-full bg-black hidden md:block"
+                  />
+                  <SanityImage
+                    image={bio.heroImageMobile}
+                    className="w-full bg-black md:hidden"
+                  />
+                </m.div>
+              </div>
             </m.div>
 
             <div className="w-full md:w-[55%] lg:w-[40%] block md:hidden mb-[30px]">
@@ -119,11 +142,13 @@ export default function Bio(initialData) {
                           </div>
                         </m.div>
                         <div className="ml-auto w-1/2 flex">
-                          <m.div variants={reveal} className="ml-auto">
-                            <div className="block font-normal text-xl leading-[1.15]">
-                              <span className="block underline">hello@cpbailey.co.uk</span>
-                            </div>
-                          </m.div>
+                          <div className="relative overflow-hidden">
+                            <m.div variants={reveal} className="ml-auto">
+                              <div className="block font-normal text-xl leading-[1.15]">
+                                <a href="mailto:hello@cpbailey.co.uk" className="block underline">hello@cpbailey.co.uk</a>
+                              </div>
+                            </m.div>
+                          </div>
                         </div>
                       </div>
 
@@ -134,11 +159,13 @@ export default function Bio(initialData) {
                           </div>
                         </m.div>
                         <div className="ml-auto w-1/2 flex">
-                          <m.div variants={reveal} className="ml-auto">
-                            <div className="block font-normal text-xl leading-[1.15]">
-                              <span className="block underline">/christopherpaulbailey</span>
-                            </div>
-                          </m.div>
+                          <div className="relative overflow-hidden">
+                            <m.div variants={reveal} className="ml-auto">
+                              <div className="block font-normal text-xl leading-[1.15]">
+                                <a href="https://www.linkedin.com/in/christopherpaulbailey/" target="_blank" rel="noopener noreferrer" className="block underline">/christopherpaulbailey</a>
+                              </div>
+                            </m.div>
+                          </div>
                         </div>
                       </div>
 
@@ -149,11 +176,13 @@ export default function Bio(initialData) {
                           </div>
                         </m.div>
                         <div className="ml-auto w-1/2 flex">
-                          <m.div variants={reveal} className="ml-auto">
-                            <div className="block font-normal text-xl leading-[1.15]">
-                              <span className="block underline">/christopherbailey</span>
-                            </div>
-                          </m.div>
+                          <div className="relative overflow-hidden">
+                            <m.div variants={reveal} className="ml-auto">
+                              <div className="block font-normal text-xl leading-[1.15]">
+                                <a href="https://dribbble.com/christopherbailey" target="_blank" rel="noopener noreferrer" className="block underline">/christopherbailey</a>
+                              </div>
+                            </m.div>
+                          </div>
                         </div>
                       </div>
 
@@ -164,11 +193,13 @@ export default function Bio(initialData) {
                           </div>
                         </m.div>
                         <div className="ml-auto w-1/2 flex">
-                          <m.div variants={reveal} className="ml-auto">
-                            <div className="block font-normal text-xl leading-[1.15]">
-                              <span className="block underline">/christopherbailey</span>
-                            </div>
-                          </m.div>
+                          <div className="relative overflow-hidden">
+                            <m.div variants={reveal} className="ml-auto">
+                              <div className="block font-normal text-xl leading-[1.15]">
+                                <a href="https://www.behance.net/christopherbailey" target="_blank" rel="noopener noreferrer" className="block underline">/christopherbailey</a>
+                              </div>
+                            </m.div>
+                          </div>
                         </div>
                       </div>
 
@@ -179,11 +210,13 @@ export default function Bio(initialData) {
                           </div>
                         </m.div>
                         <div className="ml-auto w-1/2 flex">
-                          <m.div variants={reveal} className="ml-auto">
-                            <div className="block font-normal text-xl leading-[1.15]">
-                              <span className="block underline">/cpbaileyuk</span>
-                            </div>
-                          </m.div>
+                          <div className="relative overflow-hidden">
+                            <m.div variants={reveal} className="ml-auto">
+                              <div className="block font-normal text-xl leading-[1.15]">
+                                <a href="https://www.instagram.com/cpbaileyuk/" target="_blank" rel="noopener noreferrer" className="block underline">/cpbaileyuk</a>
+                              </div>
+                            </m.div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -201,51 +234,63 @@ export default function Bio(initialData) {
                     </div>
         
                     <div className="ml-auto w-full block md:w-[55%] lg:w-[40%]">
-                      <div className="flex w-full">
+                      <div className="flex w-full relative overflow-hidden">
                         <m.div variants={reveal} className="w-1/2 mr-auto">
                           <div className="block font-normal text-xl leading-[1.15]">
                             <span className="block">Art Direction</span>
                           </div>
                         </m.div>
                         <div className="ml-auto w-1/2 flex">
-                          <m.div variants={reveal} className="ml-auto">
+                          <div className="relative overflow-hidden">
+                            <m.div variants={reveal} className="ml-auto">
+                              <div className="block font-normal text-xl leading-[1.15]">
+                                <Link href="/">
+                                  <a className="block underline">View Cases</a>
+                                </Link>
+                              </div>
+                            </m.div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex w-full">
+                        <div className="relative overflow-hidden">
+                          <m.div variants={reveal} className="w-1/2 mr-auto">
                             <div className="block font-normal text-xl leading-[1.15]">
-                              <span className="block underline">View Cases</span>
+                              <span className="block">Brand Identity</span>
                             </div>
                           </m.div>
                         </div>
                       </div>
 
                       <div className="flex w-full">
-                        <m.div variants={reveal} className="w-1/2 mr-auto">
-                          <div className="block font-normal text-xl leading-[1.15]">
-                            <span className="block">Brand Identity</span>
-                          </div>
-                        </m.div>
+                        <div className="relative overflow-hidden">
+                          <m.div variants={reveal} className="w-1/2 mr-auto">
+                            <div className="block font-normal text-xl leading-[1.15]">
+                              <span className="block">Logo Design</span>
+                            </div>
+                          </m.div>
+                        </div>
                       </div>
 
                       <div className="flex w-full">
-                        <m.div variants={reveal} className="w-1/2 mr-auto">
-                          <div className="block font-normal text-xl leading-[1.15]">
-                            <span className="block">Logo Design</span>
-                          </div>
-                        </m.div>
-                      </div>
-
-                      <div className="flex w-full">
-                        <m.div variants={reveal} className="w-1/2 mr-auto">
-                          <div className="block font-normal text-xl leading-[1.15]">
-                            <span className="block">Brand Guidelines</span>
-                          </div>
-                        </m.div>
+                        <div className="relative overflow-hidden">
+                          <m.div variants={reveal} className="w-1/2 mr-auto">
+                            <div className="block font-normal text-xl leading-[1.15]">
+                              <span className="block">Brand Guidelines</span>
+                            </div>
+                          </m.div>
+                        </div>
                       </div>
                       
                       <div className="flex w-full">
-                        <m.div variants={reveal} className="w-1/2 mr-auto">
-                          <div className="block font-normal text-xl leading-[1.15]">
-                            <span className="block">Interaction Design</span>
-                          </div>
-                        </m.div>
+                        <div className="relative overflow-hidden">
+                          <m.div variants={reveal} className="w-1/2 mr-auto">
+                            <div className="block font-normal text-xl leading-[1.15]">
+                              <span className="block">Interaction Design</span>
+                            </div>
+                          </m.div>
+                        </div>
                       </div>
                     </div>
                   </span>
@@ -263,17 +308,21 @@ export default function Bio(initialData) {
         
                     <div className="ml-auto w-full block md:w-[55%] lg:w-[40%]">
                       <div className="flex w-full">
-                        <m.div variants={reveal} className="w-1/2 mr-auto">
-                          <div className="block font-normal text-xl leading-[1.15]">
-                            <span className="block">Awwwards</span>
-                          </div>
-                        </m.div>
-                        <div className="ml-auto w-1/2 flex">
-                          <m.div variants={reveal} className="ml-auto">
+                        <div className="relative overflow-hidden">
+                          <m.div variants={reveal} className="w-1/2 mr-auto">
                             <div className="block font-normal text-xl leading-[1.15]">
-                              <span className="block underline">Site Of The Day</span>
+                              <span className="block">Awwwards</span>
                             </div>
                           </m.div>
+                        </div>
+                        <div className="ml-auto w-1/2 flex">
+                          <div className="relative overflow-hidden">
+                            <m.div variants={reveal} className="ml-auto">
+                              <div className="block font-normal text-xl leading-[1.15]">
+                                <span className="block underline">Site Of The Day</span>
+                              </div>
+                            </m.div>
+                          </div>
                         </div>
                       </div>
                     </div>
