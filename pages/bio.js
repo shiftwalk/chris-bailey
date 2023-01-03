@@ -6,7 +6,7 @@ import { NextSeo } from 'next-seo'
 import { useContext, useEffect } from 'react'
 import { IntroContext } from 'context/intro'
 import SanityPageService from '@/services/sanityPageService'
-import SanityBlockContent from '@sanity/block-content-to-react';
+import BlockContent from '@sanity/block-content-to-react'
 import SanityImage from '@/components/sanity-image';
 import Link from 'next/link'
 
@@ -15,6 +15,10 @@ const query = `{
     title,
     aboutText,
     aboutServices[],
+    awards[] {
+      title,
+      location
+    },
     heroImage {
       asset-> {
         ...
@@ -48,7 +52,8 @@ const query = `{
     emailAddress,
     instagram,
     linkedIn,
-    bookingAvailabilityOverride,
+    dribbble,
+    behance
   }
 }`
 
@@ -92,9 +97,10 @@ export default function Bio(initialData) {
 
               <div className="w-full md:w-[55%] lg:w-[40%] hidden md:block">
                 <div className="content text-lg lg:text-xl font-normal w-[99%] pt-[5px]">
-                  <p>There's a power in creativity that can drive real commercial results. As a successful art director, I build strong, timeless and flexible brand identities by bringing together imagination, technical skill and keen business awareness. It's not just about designing something that looks good. I shape brand identities that add value and support return on investment. I use visual storytelling techniques to forge an emotional connection between your brand and your customers. Your brand identity supports your business as it navigates change and is a strong foundation for trend-led campaigns. Hiring me to consult on your brand means you're investing in a fresh - and experienced - pair of eyes. As an imaginative creative, I'm proud to be a maker and a storyteller. I use inventive creativity and design skills to get to the heart of your brand and communicate it in a distinctive and engaging way. I apply the latest insights to challenge pre-existing ideas and unlock inspired new ways of thinking and doing.</p>
+                  <BlockContent serializers={{ container: ({ children }) => children }} blocks={bio.aboutText} />
+                  {/* <p>There's a power in creativity that can drive real commercial results. As a successful art director, I build strong, timeless and flexible brand identities by bringing together imagination, technical skill and keen business awareness. It's not just about designing something that looks good. I shape brand identities that add value and support return on investment. I use visual storytelling techniques to forge an emotional connection between your brand and your customers. Your brand identity supports your business as it navigates change and is a strong foundation for trend-led campaigns. Hiring me to consult on your brand means you're investing in a fresh - and experienced - pair of eyes. As an imaginative creative, I'm proud to be a maker and a storyteller. I use inventive creativity and design skills to get to the heart of your brand and communicate it in a distinctive and engaging way. I apply the latest insights to challenge pre-existing ideas and unlock inspired new ways of thinking and doing.</p>
                     
-                  <p>When you commission me to craft your brand identity, you free yourself up to do what you do best. You can feel confident that you've entrusted your brand - and budget - to a seasoned professional who'll deliver lasting recognition. As a time-served professional, I'll always treat you, your clients and team members with courtesy and respect. Let's talk about how we can build a future-proof brand that really delivers. Whether you're a start-up or an established organisation, launching something new or wanting to reboot a tired brand, get in touch.</p>
+                  <p>When you commission me to craft your brand identity, you free yourself up to do what you do best. You can feel confident that you've entrusted your brand - and budget - to a seasoned professional who'll deliver lasting recognition. As a time-served professional, I'll always treat you, your clients and team members with courtesy and respect. Let's talk about how we can build a future-proof brand that really delivers. Whether you're a start-up or an established organisation, launching something new or wanting to reboot a tired brand, get in touch.</p> */}
                 </div>
               </div>
             </div>
@@ -145,7 +151,7 @@ export default function Bio(initialData) {
                           <div className="relative overflow-hidden">
                             <m.div variants={reveal} className="ml-auto">
                               <div className="block font-normal text-xl leading-[1.15]">
-                                <a href="mailto:hello@cpbailey.co.uk" className="block underline">hello@cpbailey.co.uk</a>
+                                <a href={`mailto:${contact.emailAddress}`} className="block underline hover:opacity-40 transition-opacity ease-in-out duration-300">{contact.emailAddress}</a>
                               </div>
                             </m.div>
                           </div>
@@ -162,7 +168,7 @@ export default function Bio(initialData) {
                           <div className="relative overflow-hidden">
                             <m.div variants={reveal} className="ml-auto">
                               <div className="block font-normal text-xl leading-[1.15]">
-                                <a href="https://www.linkedin.com/in/christopherpaulbailey/" target="_blank" rel="noopener noreferrer" className="block underline">/christopherpaulbailey</a>
+                                <a href={contact.linkedIn} target="_blank" rel="noopener noreferrer" className="block underline hover:opacity-40 transition-opacity ease-in-out duration-300">/{contact.linkedIn.substring(contact.linkedIn.lastIndexOf('/') + 1)}</a>
                               </div>
                             </m.div>
                           </div>
@@ -179,7 +185,7 @@ export default function Bio(initialData) {
                           <div className="relative overflow-hidden">
                             <m.div variants={reveal} className="ml-auto">
                               <div className="block font-normal text-xl leading-[1.15]">
-                                <a href="https://dribbble.com/christopherbailey" target="_blank" rel="noopener noreferrer" className="block underline">/christopherbailey</a>
+                                <a href={contact.dribbble} target="_blank" rel="noopener noreferrer" className="block underline hover:opacity-40 transition-opacity ease-in-out duration-300">/{contact.dribbble.substring(contact.dribbble.lastIndexOf('/') + 1)}</a>
                               </div>
                             </m.div>
                           </div>
@@ -196,7 +202,7 @@ export default function Bio(initialData) {
                           <div className="relative overflow-hidden">
                             <m.div variants={reveal} className="ml-auto">
                               <div className="block font-normal text-xl leading-[1.15]">
-                                <a href="https://www.behance.net/christopherbailey" target="_blank" rel="noopener noreferrer" className="block underline">/christopherbailey</a>
+                                <a href={contact.behance} target="_blank" rel="noopener noreferrer" className="block underline hover:opacity-40 transition-opacity ease-in-out duration-300">/{contact.behance.substring(contact.behance.lastIndexOf('/') + 1)}</a>
                               </div>
                             </m.div>
                           </div>
@@ -213,7 +219,7 @@ export default function Bio(initialData) {
                           <div className="relative overflow-hidden">
                             <m.div variants={reveal} className="ml-auto">
                               <div className="block font-normal text-xl leading-[1.15]">
-                                <a href="https://www.instagram.com/cpbaileyuk/" target="_blank" rel="noopener noreferrer" className="block underline">/cpbaileyuk</a>
+                                <a href={contact.instagram} target="_blank" rel="noopener noreferrer" className="block underline hover:opacity-40 transition-opacity ease-in-out duration-300">/{contact.instagram.substring(contact.instagram.lastIndexOf('/') + 1)}</a>
                               </div>
                             </m.div>
                           </div>
@@ -237,7 +243,7 @@ export default function Bio(initialData) {
                       <div className="flex w-full relative overflow-hidden">
                         <m.div variants={reveal} className="w-1/2 mr-auto">
                           <div className="block font-normal text-xl leading-[1.15]">
-                            <span className="block">Art Direction</span>
+                            <span className="block">{bio.aboutServices[0]}</span>
                           </div>
                         </m.div>
                         <div className="ml-auto w-1/2 flex">
@@ -245,7 +251,7 @@ export default function Bio(initialData) {
                             <m.div variants={reveal} className="ml-auto">
                               <div className="block font-normal text-xl leading-[1.15]">
                                 <Link href="/">
-                                  <a className="block underline">View Cases</a>
+                                  <a className="block underline hover:opacity-40 transition-opacity ease-in-out duration-300">View Cases</a>
                                 </Link>
                               </div>
                             </m.div>
@@ -253,45 +259,21 @@ export default function Bio(initialData) {
                         </div>
                       </div>
 
-                      <div className="flex w-full">
-                        <div className="relative overflow-hidden">
-                          <m.div variants={reveal} className="w-1/2 mr-auto">
-                            <div className="block font-normal text-xl leading-[1.15]">
-                              <span className="block">Brand Identity</span>
-                            </div>
-                          </m.div>
-                        </div>
-                      </div>
 
-                      <div className="flex w-full">
-                        <div className="relative overflow-hidden">
-                          <m.div variants={reveal} className="w-1/2 mr-auto">
-                            <div className="block font-normal text-xl leading-[1.15]">
-                              <span className="block">Logo Design</span>
+                      {bio.aboutServices.slice(1).map((e, i) => {
+                        return (
+                          <div className="flex w-full" key={i}>
+                            <div className="relative overflow-hidden">
+                              <m.div variants={reveal} className="w-full mr-auto">
+                                <div className="block font-normal text-xl leading-[1.15]">
+                                  <span className="block">{e}</span>
+                                </div>
+                              </m.div>
                             </div>
-                          </m.div>
-                        </div>
-                      </div>
-
-                      <div className="flex w-full">
-                        <div className="relative overflow-hidden">
-                          <m.div variants={reveal} className="w-1/2 mr-auto">
-                            <div className="block font-normal text-xl leading-[1.15]">
-                              <span className="block">Brand Guidelines</span>
-                            </div>
-                          </m.div>
-                        </div>
-                      </div>
-                      
-                      <div className="flex w-full">
-                        <div className="relative overflow-hidden">
-                          <m.div variants={reveal} className="w-1/2 mr-auto">
-                            <div className="block font-normal text-xl leading-[1.15]">
-                              <span className="block">Interaction Design</span>
-                            </div>
-                          </m.div>
-                        </div>
-                      </div>
+                          </div>
+                        )
+                      })}
+                    
                     </div>
                   </span>
                 </m.li>
@@ -305,26 +287,30 @@ export default function Bio(initialData) {
                         </div>
                       </m.div>
                     </div>
-        
+                    
                     <div className="ml-auto w-full block md:w-[55%] lg:w-[40%]">
-                      <div className="flex w-full">
-                        <div className="relative overflow-hidden">
-                          <m.div variants={reveal} className="w-1/2 mr-auto">
-                            <div className="block font-normal text-xl leading-[1.15]">
-                              <span className="block">Awwwards</span>
+                      {bio.awards.map((e, i) => {
+                        return (
+                          <div className="flex w-full" key={i}>
+                            <div className="relative overflow-hidden">
+                              <m.div variants={reveal} className="w-full mr-auto">
+                                <div className="block font-normal text-xl leading-[1.15]">
+                                  <span className="block leading-[1.15]">{e.location}</span>
+                                </div>
+                              </m.div>
                             </div>
-                          </m.div>
-                        </div>
-                        <div className="ml-auto w-1/2 flex">
-                          <div className="relative overflow-hidden">
-                            <m.div variants={reveal} className="ml-auto">
-                              <div className="block font-normal text-xl leading-[1.15]">
-                                <span className="block underline">Site Of The Day</span>
+                            <div className="ml-auto w-1/2 flex">
+                              <div className="relative overflow-hidden">
+                                <m.div variants={reveal} className="ml-auto">
+                                  <div className="block font-normal text-xl leading-[1.15]">
+                                    <span className="block leading-[1.15]">{e.title}</span>
+                                  </div>
+                                </m.div>
                               </div>
-                            </m.div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
+                        )
+                      })}
                     </div>
                   </span>
                 </m.li>

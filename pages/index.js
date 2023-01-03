@@ -63,7 +63,7 @@ export default function Works(initialData) {
               </div>
               <div className="relative overflow-hidden">
                 <m.div variants={reveal}>
-                  <span className="block font-normal leading-[0.95] text-[8.5vw] md:text-[7vw] md:leading-[0.95]">19’—22’</span>
+                  <span className="block font-normal leading-[0.95] text-[8.5vw] md:text-[7vw] md:leading-[0.95]">19’—23’</span>
                 </m.div>
               </div>
             </m.div>

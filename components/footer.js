@@ -15,7 +15,7 @@ export default function Footer() {
             <span className="block w-full md:w-[80%] font-bold leading-[0.95] text-[9vw] md:text-[5vw] lg:text-[3.5vw] xl:text-[3vw] md:leading-[0.95] mb-[10vw] lg:mb-[6vw]">Based in the UK Working Worldwide</span>
 
             <div className="flex w-full">
-              <span className="block font-normal mr-auto">Design by CPB© built by <a href="https://shiftwalk.studio" target="_blank" rel="noopener noreferrer" className="underline">ShiftWalk</a></span>
+              <span className="block font-normal mr-auto">Design by CPB© built by <a href="https://shiftwalk.studio" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-40 transition-opacity ease-in-out duration-300">ShiftWalk</a></span>
 
               <span className="hidden lg:block font-normal ml-auto">{time.replace(' ', '')} GMT</span>
             </div>

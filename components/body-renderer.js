@@ -1,6 +1,7 @@
 import BlockContentWrapper from '@/components/block-content-wrapper'
 import ModularDoubleImageBlock from '@/components/modular-double-image-block'
 import ModularSingleImageBlock from '@/components/modular-single-image-block'
+import ModularTextBlock from './modular-text-block'
 
 
 const notImplemented = ({ type }) => <h1>Not implemented {type}</h1>
@@ -22,6 +23,13 @@ const bodySerializers = {
   },
   singleImageBlock: {
     component: ModularSingleImageBlock,
+    wrapper: ({ children }) => 
+      <div className="mb-3">
+        {children}
+      </div>
+  },
+  textBlock: {
+    component: ModularTextBlock,
     wrapper: ({ children }) => 
       <div className="mb-3">
         {children}
