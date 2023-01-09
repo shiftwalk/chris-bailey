@@ -44,9 +44,9 @@ export default function App({ Component, pageProps }) {
   let bodyColor = 'bg-white'
 
   if (router.asPath == '/') {
-    bodyColor = 'bg-[#C6B9A7] selection:bg-black selection:text-[#C6B9A7]'
+    bodyColor = 'bg-[#D3C9C0] selection:bg-black selection:text-[#D3C9C0]'
   } else if (router.asPath == '/bio') {
-    bodyColor = 'bg-[#E6C196] selection:bg-black selection:text-[#E6C196]'
+    bodyColor = 'bg-[#D3C9C0] selection:bg-black selection:text-[#D3C9C0]'
   }
 
   return (
@@ -70,7 +70,7 @@ export default function App({ Component, pageProps }) {
                 animate="hidden"
                 variants={introEnd}
                 transition={{ delay: 1, duration: 1.2, ease: [0.83, 0, 0.17, 1] }}
-                className="bg-[#98928B] fixed inset-0 z-[1000] flex flex-wrap items-end h-screen min-h-screen max-h-screen p-[10px] cursor-wait"
+                className="bg-[#6F808A] fixed inset-0 z-[1000] flex flex-wrap items-end h-screen min-h-screen max-h-screen p-[10px] cursor-wait"
               >
                 <div className="w-full mt-auto overflow-hidden relative">
                   <m.div
