@@ -34,7 +34,7 @@ export default function Header({ path }) {
                 </a>
               </Link>
               
-              <a href="mailto:hello@chrisbaileystudio.com" className="block relative overflow-hidden group opacity-[0.25] hover:opacity-[1] transition-opacity ease-in-out duration-300">
+              <a href="mailto:hello@cpbailey.co.uk" className="block relative overflow-hidden group opacity-[0.25] hover:opacity-[1] transition-opacity ease-in-out duration-300">
                 <span className="block transition-transform ease-in-out duration-[350ms] md:group-hover:translate-y-[-110%]">Email</span>
                 <span className="absolute inset-0 block transition-translate ease-in-out duration-[350ms] md:group-hover:translate-y-0 translate-y-full">Email</span>
               </a>
