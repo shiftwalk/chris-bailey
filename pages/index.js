@@ -7,12 +7,26 @@ import { useContext, useEffect, useState } from 'react'
 import { IntroContext } from 'context/intro'
 import SanityPageService from '@/services/sanityPageService'
 import Footer from '@/components/footer';
+import SanityImage from '@/components/sanity-image';
+import Gif from '@/components/gif'
+
 
 const query = `{
   "work": *[_type == "work"] | order(orderRank asc) {
     title,
     services[],
     year,
+    teaserImages[] {
+      asset-> {
+        ...
+      },
+      caption,
+      alt,
+      hotspot {
+        x,
+        y
+      },
+    },
     slug {
       current
     }
@@ -55,8 +69,8 @@ export default function Works(initialData) {
           className=""
         >
           <article className="px-[10px] pt-[135px]">
-            <m.div variants={fade} className="w-full mt-auto overflow-hidden relative border-t border-black pt-[10px]">
-              <div className="relative overflow-hidden">
+            <m.div variants={fade} className="w-full mt-auto overflow-hidden relative border-t border-black pt-[10px] pb-[65vw] md:pb-[35vw] lg:pb-[20vw] xl:pb-[12vw]">
+              <div className="relative overflow-hidden ">
                 <m.div variants={reveal}>
                   <span className="block font-bold leading-[0.95] text-[8.5vw] md:text-[7vw] md:leading-[0.95]">Selected Works</span>
                 </m.div>
@@ -66,9 +80,27 @@ export default function Works(initialData) {
                   <span className="block font-normal leading-[0.95] text-[8.5vw] md:text-[7vw] md:leading-[0.95]">19’—23’</span>
                 </m.div>
               </div>
+              
+              <div className="absolute bottom-0 right-0 h-[65%] lg:h-[calc(100%-20px)] overflow-hidden w-full lg:w-[40%] my-[10px]">
+                {work.map((e, i) => {
+                  return (
+                    <div className={`w-full h-full transition-opacity ease-in-out duration-[350ms] ${(hoveringProjects && i == activeProject) ? 'opacity-100' : 'opacity-0' }`} key={i}>
+                      {e.teaserImages.length == 1 ? (
+                        <SanityImage
+                          image={e.teaserImages[0]}
+                          layout="fill"
+                          sizes="(min-width: 768px) 90vw, 90vw"
+                        />
+                      ) : (
+                        <Gif images={e.teaserImages} fill />
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
             </m.div>
 
-            <div className="w-full pt-[65vw] md:pt-[35vw] lg:pt-[20vw] xl:pt-[12vw]">
+            <div className="w-full">
               <ul>
                 {work.map((e, i) => {
                   let activeState = 'opacity-[0.25]'

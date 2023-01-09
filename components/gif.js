@@ -1,7 +1,7 @@
+import Image from "@/components/sanity-image"
 import { useEffect, useRef, useState } from "react";
-import SanityImage from "./sanity-image";
 
-export default function Gif({ images }) {
+export default function Gif({ images, fill }) {
   const ref = useRef(null);
   const [currentImage, setCurrentImage] = useState(0);
 
@@ -24,15 +24,14 @@ export default function Gif({ images }) {
   },[currentImage]);
 
   return(
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden w-full h-full">
       {images.map((e, i) => {
         return (
-          <div className={`block w-full ${i == 0 ? 'relative' : 'absolute inset-0' } ${i == currentImage ? 'z-[10]' : 'z-[1] opacity-0' }`} ref={ref} key={i}>
-            <SanityImage
+          <div className={`block w-full h-full ${i == 0 ? 'relative' : 'absolute inset-0' } ${i == currentImage ? 'z-[10]' : 'z-[1] opacity-0' }`} ref={ref} key={i}>
+            <Image
               image={e}
               focalPoint={e.asset.hotspot}
-              layout={i == 0 ? 'responsive' : 'fill' }
-              sizes="(min-width: 768px) 80vw, 100vw"
+              layout={`${fill ? 'fill' : 'responsive'}`}
               className="w-full"
             />
           </div>

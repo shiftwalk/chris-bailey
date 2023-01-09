@@ -10,7 +10,7 @@ import SanityBlockContent from '@sanity/block-content-to-react'
 import BodyRenderer from '@/components/body-renderer'
 import SanityImage from '@/components/sanity-image'
 import Link from 'next/link'
-
+import Gif from '@/components/gif'
 
 const query = `{
   "article": *[_type == "work" && slug.current == $slug][0]{
@@ -19,7 +19,7 @@ const query = `{
     introHeading,
     introText,
     services[],
-    teaserImage {
+    teaserImages[] {
       asset-> {
         ...
       },
@@ -145,11 +145,15 @@ export default function WorksSlug(initialData) {
 
             <div className="w-full order-1 md:order-2 mb-[10px]">
               <div className="relative overflow-hidden aspect-[10/14] md:aspect-[16/10]">
-                <SanityImage
-                  image={article.teaserImage}
-                  layout="fill"
-                  sizes="(min-width: 768px) 90vw, 90vw"
-                />
+                {article.teaserImages.length == 1 ? (
+                  <SanityImage
+                    image={article.teaserImages[0]}
+                    layout="fill"
+                    sizes="(min-width: 768px) 90vw, 90vw"
+                  />
+                ) : (
+                  <Gif images={article.teaserImages} />
+                )}
               </div>
             </div>
 

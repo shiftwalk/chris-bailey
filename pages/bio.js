@@ -50,17 +50,17 @@ const query = `{
   },
   "contact": *[_type == "contact"][0]{
     emailAddress,
-    instagram,
-    linkedIn,
-    dribbble,
-    behance
+    socials[] {
+      name,
+      url
+    }
   }
 }`
 
 const pageService = new SanityPageService(query)
 
 export default function Bio(initialData) {
-  const { data: { bio, contact } } = pageService.getPreviewHook(initialData)()
+  const { data: { bio, contact, colors } } = pageService.getPreviewHook(initialData)()
   const [introContext, setIntroContext] = useContext(IntroContext);
 
   useEffect(() => {
@@ -98,9 +98,6 @@ export default function Bio(initialData) {
               <div className="w-full md:w-[55%] lg:w-[40%] hidden md:block">
                 <div className="content text-lg lg:text-xl font-normal w-[99%] pt-[5px]">
                   <BlockContent serializers={{ container: ({ children }) => children }} blocks={bio.aboutText} />
-                  {/* <p>There's a power in creativity that can drive real commercial results. As a successful art director, I build strong, timeless and flexible brand identities by bringing together imagination, technical skill and keen business awareness. It's not just about designing something that looks good. I shape brand identities that add value and support return on investment. I use visual storytelling techniques to forge an emotional connection between your brand and your customers. Your brand identity supports your business as it navigates change and is a strong foundation for trend-led campaigns. Hiring me to consult on your brand means you're investing in a fresh - and experienced - pair of eyes. As an imaginative creative, I'm proud to be a maker and a storyteller. I use inventive creativity and design skills to get to the heart of your brand and communicate it in a distinctive and engaging way. I apply the latest insights to challenge pre-existing ideas and unlock inspired new ways of thinking and doing.</p>
-                    
-                  <p>When you commission me to craft your brand identity, you free yourself up to do what you do best. You can feel confident that you've entrusted your brand - and budget - to a seasoned professional who'll deliver lasting recognition. As a time-served professional, I'll always treat you, your clients and team members with courtesy and respect. Let's talk about how we can build a future-proof brand that really delivers. Whether you're a start-up or an established organisation, launching something new or wanting to reboot a tired brand, get in touch.</p> */}
                 </div>
               </div>
             </div>
@@ -158,73 +155,26 @@ export default function Bio(initialData) {
                         </div>
                       </div>
 
-                      <div className="flex w-full">
-                        <m.div variants={reveal} className="w-1/2 mr-auto">
-                          <div className="block font-normal text-xl leading-[1.15]">
-                            <span className="block">LinkedIn</span>
-                          </div>
-                        </m.div>
-                        <div className="ml-auto w-1/2 flex">
-                          <div className="relative overflow-hidden">
-                            <m.div variants={reveal} className="ml-auto">
+                      {contact.socials.map((e, i) => {
+                        return (
+                          <div className="flex w-full" key={i}>
+                            <m.div variants={reveal} className="w-1/2 mr-auto">
                               <div className="block font-normal text-xl leading-[1.15]">
-                                <a href={contact.linkedIn} target="_blank" rel="noopener noreferrer" className="block underline hover:opacity-40 transition-opacity ease-in-out duration-300">/{contact.linkedIn.substring(contact.linkedIn.lastIndexOf('/') + 1)}</a>
+                                <span className="block">{e.name}</span>
                               </div>
                             </m.div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex w-full">
-                        <m.div variants={reveal} className="w-1/2 mr-auto">
-                          <div className="block font-normal text-xl leading-[1.15]">
-                            <span className="block">Dribbble</span>
-                          </div>
-                        </m.div>
-                        <div className="ml-auto w-1/2 flex">
-                          <div className="relative overflow-hidden">
-                            <m.div variants={reveal} className="ml-auto">
-                              <div className="block font-normal text-xl leading-[1.15]">
-                                <a href={contact.dribbble} target="_blank" rel="noopener noreferrer" className="block underline hover:opacity-40 transition-opacity ease-in-out duration-300">/{contact.dribbble.substring(contact.dribbble.lastIndexOf('/') + 1)}</a>
+                            <div className="ml-auto w-1/2 flex">
+                              <div className="relative overflow-hidden">
+                                <m.div variants={reveal} className="ml-auto">
+                                  <div className="block font-normal text-xl leading-[1.15]">
+                                    <a href={e.url} target="_blank" rel="noopener noreferrer" className="block underline hover:opacity-40 transition-opacity ease-in-out duration-300">/{e.url.substring(e.url.lastIndexOf('/') + 1)}</a>
+                                  </div>
+                                </m.div>
                               </div>
-                            </m.div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-
-                      <div className="flex w-full">
-                        <m.div variants={reveal} className="w-1/2 mr-auto">
-                          <div className="block font-normal text-xl leading-[1.15]">
-                            <span className="block">Behance</span>
-                          </div>
-                        </m.div>
-                        <div className="ml-auto w-1/2 flex">
-                          <div className="relative overflow-hidden">
-                            <m.div variants={reveal} className="ml-auto">
-                              <div className="block font-normal text-xl leading-[1.15]">
-                                <a href={contact.behance} target="_blank" rel="noopener noreferrer" className="block underline hover:opacity-40 transition-opacity ease-in-out duration-300">/{contact.behance.substring(contact.behance.lastIndexOf('/') + 1)}</a>
-                              </div>
-                            </m.div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex w-full">
-                        <m.div variants={reveal} className="w-1/2 mr-auto">
-                          <div className="block font-normal text-xl leading-[1.15]">
-                            <span className="block">Instagram</span>
-                          </div>
-                        </m.div>
-                        <div className="ml-auto w-1/2 flex">
-                          <div className="relative overflow-hidden">
-                            <m.div variants={reveal} className="ml-auto">
-                              <div className="block font-normal text-xl leading-[1.15]">
-                                <a href={contact.instagram} target="_blank" rel="noopener noreferrer" className="block underline hover:opacity-40 transition-opacity ease-in-out duration-300">/{contact.instagram.substring(contact.instagram.lastIndexOf('/') + 1)}</a>
-                              </div>
-                            </m.div>
-                          </div>
-                        </div>
-                      </div>
+                        )
+                      })}
                     </div>
                   </span>
                 </m.li>
@@ -277,43 +227,45 @@ export default function Bio(initialData) {
                     </div>
                   </span>
                 </m.li>
-
-                <m.li variants={fade} className="block border-t border-black pt-[10px] pb-[20px]">
-                  <span className="flex flex-wrap md:mb-3">
-                    <div className="w-full md:w-[45%] lg:w-[60%] mb-[10px] md:mb-0">
-                      <m.div variants={reveal}>
-                        <div className="block font-bold text-[28px] lg:text-[32px] leading-none">
-                          <span className="block">Awards</span>
-                        </div>
-                      </m.div>
-                    </div>
-                    
-                    <div className="ml-auto w-full block md:w-[55%] lg:w-[40%]">
-                      {bio.awards.map((e, i) => {
-                        return (
-                          <div className="flex w-full" key={i}>
-                            <div className="relative overflow-hidden">
-                              <m.div variants={reveal} className="w-full mr-auto">
-                                <div className="block font-normal text-xl leading-[1.15]">
-                                  <span className="block leading-[1.15]">{e.location}</span>
-                                </div>
-                              </m.div>
-                            </div>
-                            <div className="ml-auto w-1/2 flex">
+                
+                {bio.awards?.length > 0 && (
+                  <m.li variants={fade} className="block border-t border-black pt-[10px] pb-[20px]">
+                    <span className="flex flex-wrap md:mb-3">
+                      <div className="w-full md:w-[45%] lg:w-[60%] mb-[10px] md:mb-0">
+                        <m.div variants={reveal}>
+                          <div className="block font-bold text-[28px] lg:text-[32px] leading-none">
+                            <span className="block">Awards</span>
+                          </div>
+                        </m.div>
+                      </div>
+                      
+                      <div className="ml-auto w-full block md:w-[55%] lg:w-[40%]">
+                        {bio.awards.map((e, i) => {
+                          return (
+                            <div className="flex w-full" key={i}>
                               <div className="relative overflow-hidden">
-                                <m.div variants={reveal} className="ml-auto">
+                                <m.div variants={reveal} className="w-full mr-auto">
                                   <div className="block font-normal text-xl leading-[1.15]">
-                                    <span className="block leading-[1.15]">{e.title}</span>
+                                    <span className="block leading-[1.15]">{e.location}</span>
                                   </div>
                                 </m.div>
                               </div>
+                              <div className="ml-auto w-1/2 flex">
+                                <div className="relative overflow-hidden">
+                                  <m.div variants={reveal} className="ml-auto">
+                                    <div className="block font-normal text-xl leading-[1.15]">
+                                      <span className="block leading-[1.15]">{e.title}</span>
+                                    </div>
+                                  </m.div>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </span>
-                </m.li>
+                          )
+                        })}
+                      </div>
+                    </span>
+                  </m.li>
+                )}
               </ul>
             </div>
           </m.article>
