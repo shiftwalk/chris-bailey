@@ -1,6 +1,6 @@
 export default {
   defaultTitle: 'Designer, Art Director | Chris Bailey',
-  description: 'There is a power in creativity that can drive real commercial results. As a successful art director, I build strong, timeless and flexible brand identities by bringing together imagination, technical skill and keen business awareness.',
+  description: 'As a successful art director, I build strong, timeless and flexible brand identities by bringing together imagination, technical skill and keen business awareness.',
   titleTemplate: '%s | Chris Bailey',
   openGraph: {
     type: 'website',
