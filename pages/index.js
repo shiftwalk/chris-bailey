@@ -68,35 +68,40 @@ export default function Works(initialData) {
           exit="exit"
           className=""
         >
-          <article className="px-[10px] pt-[135px]">
-            <m.div variants={fade} className="w-full mt-auto overflow-hidden relative border-t border-black pt-[10px] pb-[65vw] md:pb-[35vw] lg:pb-[20vw] xl:pb-[12vw]">
-              <div className="relative overflow-hidden ">
-                <m.div variants={reveal}>
-                  <span className="block font-bold leading-[0.95] text-[8.5vw] md:text-[7vw] md:leading-[0.95]">Selected Works</span>
+          <article className="px-[10px]">
+            <m.div variants={fade} className="sticky top-0 z-[99] border-b border-black">
+              <div className="absolute inset-0 w-full h-full bg-[#C6B9A7]"></div>
+              <div className="pt-[135px] border-black border-b z-[99]">
+                <m.div variants={fade} className="w-full mt-auto overflow-hidden relative  border-t border-black pt-[10px] pb-[65vw] md:pb-[35vw] lg:pb-[20vw] xl:pb-[12vw]">
+                  <div className="relative overflow-hidden ">
+                    <m.div variants={reveal}>
+                      <span className="block font-bold leading-[0.95] text-[8.5vw] md:text-[7vw] md:leading-[0.95]">Selected Works</span>
+                    </m.div>
+                  </div>
+                  <div className="relative overflow-hidden">
+                    <m.div variants={reveal}>
+                      <span className="block font-normal leading-[0.95] text-[8.5vw] md:text-[7vw] md:leading-[0.95]">19’—23’</span>
+                    </m.div>
+                  </div>
+                  
+                  <div className="absolute bottom-0 right-0 h-[65%] lg:h-[calc(100%-20px)] overflow-hidden w-full lg:w-[40%] my-[10px]">
+                    {work.map((e, i) => {
+                      return (
+                        <div className={`w-full h-full transition-opacity ease-in-out duration-[350ms] ${(hoveringProjects && i == activeProject) ? 'opacity-100' : 'opacity-0' }`} key={i}>
+                          {e.teaserImages.length == 1 ? (
+                            <SanityImage
+                              image={e.teaserImages[0]}
+                              layout="fill"
+                              sizes="(min-width: 768px) 90vw, 90vw"
+                            />
+                          ) : (
+                            <Gif images={e.teaserImages} fill />
+                          )}
+                        </div>
+                      )
+                    })}
+                  </div>
                 </m.div>
-              </div>
-              <div className="relative overflow-hidden">
-                <m.div variants={reveal}>
-                  <span className="block font-normal leading-[0.95] text-[8.5vw] md:text-[7vw] md:leading-[0.95]">19’—23’</span>
-                </m.div>
-              </div>
-              
-              <div className="absolute bottom-0 right-0 h-[65%] lg:h-[calc(100%-20px)] overflow-hidden w-full lg:w-[40%] my-[10px]">
-                {work.map((e, i) => {
-                  return (
-                    <div className={`w-full h-full transition-opacity ease-in-out duration-[350ms] ${(hoveringProjects && i == activeProject) ? 'opacity-100' : 'opacity-0' }`} key={i}>
-                      {e.teaserImages.length == 1 ? (
-                        <SanityImage
-                          image={e.teaserImages[0]}
-                          layout="fill"
-                          sizes="(min-width: 768px) 90vw, 90vw"
-                        />
-                      ) : (
-                        <Gif images={e.teaserImages} fill />
-                      )}
-                    </div>
-                  )
-                })}
               </div>
             </m.div>
 
@@ -118,7 +123,7 @@ export default function Works(initialData) {
                   return (
                     <m.li
                       variants={fade}
-                      className={`mb-0 pb-0 block transition-colors ease-in-out duration-[350ms] ${activeBorder}`}
+                      className={`mb-0 pb-0 block transition-colors ease-in-out duration-[350ms] ${activeBorder} ${i == 0 && 'border-t-0'}`}
                       key={i}
                       onMouseEnter={()=> updateProject(i)}
                       onMouseLeave={()=> resetProject()}
