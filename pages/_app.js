@@ -59,7 +59,7 @@ export default function App({ Component, pageProps }) {
         <div className="block">
           <LazyMotion features={domAnimation}>
           { !introContext && router.asPath == '/' && (
-              <Div100vh className="fixed inset-0 z-[1000] flex flex-wrap items-end h-screen min-h-screen max-h-screen">
+              <Div100vh className="fixed inset-0 z-[1000] flex flex-wrap items-end">
                 <m.div 
                   initial="visible"
                   animate="hidden"
