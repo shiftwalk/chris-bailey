@@ -69,7 +69,7 @@ export default function Works(initialData) {
           className=""
         >
           <article className="px-[10px]">
-            <m.div variants={fade} className="sticky top-0 z-[99] border-b border-black">
+            <m.div variants={fade} className="relative lg:sticky lg:top-0 z-[99] border-b border-black">
               <div className="absolute inset-0 w-full h-full bg-[#D3C9C0]"></div>
               <div className="pt-[135px] border-black border-b z-[99]">
                 <m.div variants={fade} className="w-full mt-auto overflow-hidden relative  border-t border-black pt-[10px] pb-[65vw] md:pb-[35vw] lg:pb-[20vw] xl:pb-[12vw]">
@@ -84,7 +84,7 @@ export default function Works(initialData) {
                     </m.div>
                   </div>
                   
-                  <div className="absolute bottom-0 right-0 h-[65%] lg:h-[calc(100%-20px)] overflow-hidden w-full lg:w-[40%] my-[10px]">
+                  <div className="absolute bottom-0 right-0 h-[65%] lg:h-[calc(100%-20px)] overflow-hidden w-full lg:w-[40%] my-[10px] hidden lg:block">
                     {work.map((e, i) => {
                       return (
                         <div className={`w-full h-full transition-opacity ease-in-out duration-[350ms] ${(hoveringProjects && i == activeProject) ? 'opacity-100' : 'opacity-0' }`} key={i}>
