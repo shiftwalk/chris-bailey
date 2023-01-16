@@ -70,7 +70,7 @@ export default function Works(initialData) {
         >
           <article className="px-[10px]">
             <m.div variants={fade} className="sticky top-0 z-[99] border-b border-black">
-              <div className="absolute inset-0 w-full h-full bg-[#D3C9C0]"></div>
+              <div className="absolute inset-0 w-full h-full bg-[#e7e8de]"></div>
               <div className="pt-[135px] border-black border-b z-[99]">
                 <m.div variants={fade} className="w-full mt-auto overflow-hidden relative  border-t border-black pt-[10px] pb-[65vw] md:pb-[35vw] lg:pb-[20vw] xl:pb-[12vw]">
                   <div className="relative overflow-hidden ">
