@@ -13,7 +13,7 @@ export default function Header({ path }) {
           <div className="w-[35%] md:w-[45%] lg:w-[60%]">
             <Link href="/">
               <a className="block relative overflow-hidden group">
-                <span className="block"><span className="block">CPB© </span></span>
+                <span className="block"><span className="block">CPB<span className="font-normal">©</span></span></span>
               </a>
             </Link>
           </div>

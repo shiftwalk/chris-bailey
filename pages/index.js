@@ -84,7 +84,7 @@ export default function Works(initialData) {
                     </m.div>
                   </div>
                   
-                  <div className="absolute bottom-0 right-0 h-[65%] lg:h-[calc(100%-20px)] overflow-hidden w-full lg:w-[40%] my-[10px]">
+                  <div className="absolute bottom-0 right-0 h-[65%] lg:h-[calc(100%-20px)] overflow-hidden w-full lg:w-[40%] my-[10px] hidden lg:block">
                     {work.map((e, i) => {
                       return (
                         <div className={`w-full h-full transition-opacity ease-in-out duration-[350ms] ${(hoveringProjects && i == activeProject) ? 'opacity-100' : 'opacity-0' }`} key={i}>

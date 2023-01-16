@@ -158,7 +158,7 @@ export default function WorksSlug(initialData) {
             </div>
 
             <div className="mb-[33vw] md:mb-[15vw]">
-              <div className="w-full flex flex-wrap border-t border-black lg:mt-6 pt-3 pb-6 lg:pb-12 xl:pb-16">
+              {/* <div className="w-full flex flex-wrap border-t border-black lg:mt-6 pt-3 pb-6 lg:pb-12 xl:pb-16">
                 <div className="w-full lg:flex-1">
                   <h1 className="text-2xl lg:text-3xl xl:text-3xl">Services</h1>
                 </div>
@@ -169,7 +169,7 @@ export default function WorksSlug(initialData) {
                     )
                   })}
                 </div>
-              </div>
+              </div> */}
 
               <BodyRenderer body={article.imageBlocks} />
               
