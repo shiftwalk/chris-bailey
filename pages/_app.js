@@ -44,7 +44,7 @@ export default function App({ Component, pageProps }) {
   let bodyColor = 'bg-white'
 
   if (router.asPath == '/') {
-    bodyColor = 'bg-[#D3C9C0] selection:bg-black selection:text-[#D3C9C0]'
+    bodyColor = 'bg-[#f9f7f6] selection:bg-black selection:text-[#f9f7f6]'
   } else if (router.asPath == '/bio') {
     bodyColor = 'bg-[#D3C9C0] selection:bg-black selection:text-[#D3C9C0]'
   }
